@@ -6,7 +6,7 @@ module.exports = function(express){
 
     router.route('/shorten')
         .post((req,res) => {
-            url.SaveURL(req, function(err, shorted){
+            url.SaveURL(req, (err, shorted) => {
                 if(err) res.send(err);
                 res.send({'shortUrl': shorted});
             });
@@ -19,11 +19,10 @@ module.exports = function(express){
 
     router.route('/:encoded_id')
         .get((req,res) => {
-            url.FindURL(req, function(err, url){
+            url.FindURL(req, (err, url) => {
                 if(err) res.end(err);
                 res.redirect(url);
-            })
-
+            });
         });
 
     return router;

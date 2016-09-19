@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
+mongoose.connect(config.db_connection);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
