@@ -7,7 +7,10 @@ module.exports = function(express){
     router.route('/shorten')
         .post((req,res) => {
             url.SaveURL(req, (err, shorted) => {
-                if(err) res.send(err);
+                if(err) {
+                    res.send({'shortUrl': err});
+                    return;
+                }
                 res.send({'shortUrl': shorted});
             });
         });
